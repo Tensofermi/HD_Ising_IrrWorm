@@ -110,14 +110,14 @@
 
     !-- Lattice and Model parameters Ave, Dev, Cor
     !! THIS IS PROJECT-DEPENDENT 
-    integer, parameter :: D    = 5                          ! dimensionality-----------------()
+    integer, parameter :: D    = 2                          ! dimensionality-----------------()
     integer(4), parameter :: nnb  = 2*D                     ! neighboring vertices 
     integer            :: L, Lm1, Lp1, Lx, Ly, Lh, Vol      ! (L, L-1, L+1, L, L, L/2, L^D)
     double precision   :: wv, we, Kcp                       ! 1/Vol, 1/E, coupling strength
     integer            :: nw                                ! cycle number in per sample
     double precision   :: Xcp                               ! Tanh(Kcp)
 
-    integer(8), parameter :: MxL  = 32                      ! maximum linear size-------------()
+    integer(8), parameter :: MxL  = 128                      ! maximum linear size-------------()
     integer(8), parameter :: MxV  = MxL**D                  ! maximum volumn
     integer(8), parameter :: MxE  = MxV*D                   ! maximum edges 
 
