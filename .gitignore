@@ -1,0 +1,19 @@
+*.out
+*.exe
+*.mod
+
+data_IsingSqH
+ns*
+R_s_V*
+*.dat
+*.pdf
+output.txt
+cmp*.txt
+/lsub/*/
+/qsub/*/
+/extr/*/
+/plot/*.plt
+
+# just demo bin
+!/bin/*.out
+!/bin/*.mod
