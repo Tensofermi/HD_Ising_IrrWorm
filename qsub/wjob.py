@@ -116,7 +116,7 @@ f_w.close()
 # qsub.sh
 f_w = open('qsub.sh','w')
 f_w.write('#!/bin/bash' + '\n' + '\n')
-f_w.write('Njob=' + str(p.Njob*p.Nsubj) + '\n')
+f_w.write('Njob=' + str(p.Njob) + '\n')
 f_w.write('sub=1' + '\n')
 f_w.write('if [ $sub -eq 1 ]' + '\n')
 f_w.write('then' + '\n')
