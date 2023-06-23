@@ -24,8 +24,9 @@ def get_szHis(index_szHis):
   return s
 
 ###################################################################################
-Njob = 20   # chain number
-L = [14]  # size list
+sub = "qsub"     # type of sub
+Njob = 20        # chain number
+L = [14]         # size list
 d = 7
 obs = "C1"  # C1, C2, N_b, Tworm
 ###################################################################################

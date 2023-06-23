@@ -10,10 +10,8 @@ os.chdir(p.work_name)                                       # enter into work fi
 job_dir=os.getcwd()       # get path
 print("========================================================") # ==============
 print("path: "+job_dir)    # show path
-print("Nsub: "+str(p.Nsubj)) # show Nsub
+print("Nsub: "+str(format(p.Nsubj,'8d'))) # show Nsub
 
-
-### simulation paramter
 ##########################################################
 #get total
 def cal_number_of_input(Nratio, Nsubj, Njob):
@@ -45,8 +43,8 @@ number_of_input = cal_number_of_input(p.Nratio,p.Nsubj, p.Njob)
 number_inside_job = cal_number_of_input(p.Nratio,p.Nsubj,1)
 len_Njob = cal_len_of_number(p.Njob) 
 len_input = cal_len_of_number(number_of_input) 
-print("len_input  number_of_input=", len_input, number_of_input)
-print("len_Njob  Njob=", len_Njob, p.Njob)
+print("Njob: ", str(format(p.Njob,'8d')))
+print("number_of_input: ", str(number_of_input))
 
 # make job files
 ijob=0
@@ -107,6 +105,7 @@ for i in range(p.Njob):
 
 print("========================================================") # ==============
 
+# clear_qsub.sh
 f_w = open('clear_qsub.sh','w')
 f_w.write('rm job*' + '\n')
 f_w.write('rm input*' + '\n')
@@ -114,9 +113,10 @@ f_w.write('rm -r dir*' + '\n')
 f_w.write('rm Ising*' + '\n')
 f_w.close()
 
+# qsub.sh
 f_w = open('qsub.sh','w')
 f_w.write('#!/bin/bash' + '\n' + '\n')
-f_w.write('Njob=' + str(p.Nsubj) + '\n')
+f_w.write('Njob=' + str(p.Njob*p.Nsubj) + '\n')
 f_w.write('sub=1' + '\n')
 f_w.write('if [ $sub -eq 1 ]' + '\n')
 f_w.write('then' + '\n')

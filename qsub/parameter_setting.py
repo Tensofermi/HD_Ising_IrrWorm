@@ -13,7 +13,7 @@ work_name = "2D_test"       # work_job name
 #======================================================================================
 Njob = 10   # process chain number
 Kc = 0.44068679350977  # temperature parameter
-Lx = [4,6,8,10,12,16,24,32,40]  # Size
+Lx = [4,6,8,10]  # Size
 Nsubj = len(Lx)           # one chain
 iseed = 12345             # initial seed
 

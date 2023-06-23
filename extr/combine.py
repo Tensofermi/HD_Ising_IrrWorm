@@ -1,7 +1,8 @@
 import os
 
+sub = "qsub"                            # type of sub
 
-Njob_list = [9]
+Njob_list = [40]
 data_name = "data_IsingSqH"
 qsub_list = ["2D_test"]        # each qsub must satisfy the same obs list !!
 ###################################################################################
@@ -11,8 +12,8 @@ f_w = open(data_name,'w')     # set new data
 
 for j in range(len(qsub_list)):
 
-# choose qsub number 
-    os.chdir("../qsub_" + str(qsub_list[j]))
+# choose qsub name 
+    os.chdir("../" + sub + "/" + qsub_list[j])
 
     for i in range(Njob_list[j]):
 # choose chain number 
