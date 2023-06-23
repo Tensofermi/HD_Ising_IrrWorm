@@ -2,7 +2,7 @@ import os
 
 sub = "qsub"                            # type of sub
 
-Njob_list = [40]
+Njob_list = [10]
 data_name = "data_IsingSqH"
 qsub_list = ["2D_test"]        # each qsub must satisfy the same obs list !!
 ###################################################################################

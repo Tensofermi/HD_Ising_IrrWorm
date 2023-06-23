@@ -24,11 +24,13 @@ def get_szHis(index_szHis):
   return s
 
 ###################################################################################
-Njob = 48   # chain number
-L = [10]  # size list
-d = 7
+sub = "qsub"     # type of sub
+work_name = "2D_test"
+Njob = 10   # chain number
+L = [4,6,8,10]  # size list
+d = 2
 ###################################################################################
-os.chdir("../qsub_2")
+os.chdir("../" + sub + "/" + work_name)
 
 # loop different sizes 
 for j in range(len(L)):
@@ -110,7 +112,7 @@ for j in range(len(L)):
         res = res/float(2**int((k-1)/64+2))     # interval: 4, 8, 16 ...
         f_w.write(format(str(k),"5") +  "     " + format(str(get_szHis(k)),"6") +  "     " + format(format((data_temp[k]),".10f"),"20") + "     " + format(str(res),"20") +'\n')
     f_w.close()
-    os.system("cp "+d_name+" ../data/distribution/"+d_name)
+    os.system("cp "+d_name+" ../../data/distribution/"+d_name)
     os.system("rm "+d_name)
 
 

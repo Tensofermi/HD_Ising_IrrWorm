@@ -50,10 +50,9 @@ eps = 1E-13
 # "div_en","div_C1","div_C2","div_cluster_num"]
 # data_name_0 = "data_IsingSqH_0"
 
-# obs_list = ["Tworm","Ux1","Ux2","Uxw","en","en2","F1","F1_2","F2","S2","S4","C_num","N1",
-#             "N2", "R1","R2","N_s_1","N_s_2","N_s_3","P_C1_le_2","div_en","div_F1"]
+obs_list = ["Tworm","Ux1","Ux2","Uxw","en","en2","F1","F1_2","F2","S2","S4","C_num","N1",
+             "N2", "R1","R2","N_s_1","N_s_2","N_s_3","P_C1_le_2","div_en","div_F1"]
 
-obs_list = ["Tworm","P_m","Ux1","Ux2","Uxw","C1","C2","S2","S4","P_C1","N1","N2","N3","N4","R1","R2","N_s_1","N_s_2","N_s_3","S2_CG","S2_GF","Nmeu","m2","ux1_1","ux2_2" ]
 
 data_name = "data_IsingSqH"
 
