@@ -1,51 +1,16 @@
 import os
-import math
+import parameter_setting as p
 
-job_dir=os.getcwd()       # get path
-os.system('cd ../../ && gfortran main.f90 && cp a.out '+job_dir+'/a.out && cd '+job_dir)    # copy new a.out 
+os.system("cd ../bin && gfortran ../src/main.f90")          # compile code
+os.system("mkdir " + p.work_name)                           # create work file
+os.system("cp ../bin/a.out " + p.work_name)                 # copy binary file 
+os.chdir(p.work_name)                                       # enter into work file
 
-#  Ising model Kc
-#  2D：0.44068679350977...
-#  3D: 0.221654631(8)
-#  4D：0.149693785(10) 
-#  5D：0.11391498(2)  
-#  6D：0.0922982(3)  
-#  7D：0.0777086(8) -> 0.0777089(2)
 
-#======================================================================================
-Njob = 40   # process chain number
-Kc = 0.11391498  # temperature parameter
-Lx = [24]  # Size
-Nsubj = len(Lx)           # one chain
-iseed = 12345             # initial seed
-
-# toss & Sample setting
-nblock={}
-nsamp={}
-ntoss={}
-for i in range(len(Lx)):
-    Lx[i]=1*Lx[i]
-    if (Lx[i]<=8):
-        nblock[Lx[i]]=512
-        ntoss[Lx[i]]=100
-        nsamp[Lx[i]]=1000
-    elif(Lx[i]<=12):
-        nblock[Lx[i]]=512
-        ntoss[Lx[i]]= 100
-        nsamp[Lx[i]]= 500                 
-    else:
-        nblock[Lx[i]]= 256
-        ntoss[Lx[i]]=  100
-        nsamp[Lx[i]]=  200
-
-Nratio = [1]
-job_label ="job_"     # task name
-#======================================================================================
-job_time ="44480:00:00"   # walltime
 job_dir=os.getcwd()       # get path
 print("========================================================") # ==============
 print("path: "+job_dir)    # show path
-print("Nsub: "+str(Nsubj)) # show Nsub
+print("Nsub: "+str(p.Nsubj)) # show Nsub
 
 
 ### simulation paramter
@@ -76,24 +41,24 @@ def num_to_str(ijob, len_str):
 
 ##########################################################
 
-number_of_input = cal_number_of_input(Nratio,Nsubj, Njob)
-number_inside_job = cal_number_of_input(Nratio,Nsubj,1)
-len_Njob = cal_len_of_number(Njob) 
+number_of_input = cal_number_of_input(p.Nratio,p.Nsubj, p.Njob)
+number_inside_job = cal_number_of_input(p.Nratio,p.Nsubj,1)
+len_Njob = cal_len_of_number(p.Njob) 
 len_input = cal_len_of_number(number_of_input) 
 print("len_input  number_of_input=", len_input, number_of_input)
-print("len_Njob  Njob=", len_Njob, Njob)
+print("len_Njob  Njob=", len_Njob, p.Njob)
 
 # make job files
 ijob=0
 iinput=0
-for i in range(Njob):
+for i in range(p.Njob):
     ijob= i+1
     job_id = str(ijob)
     f=open("job_"+job_id,'w')
     f.write("#!/bin/bash"+'\n')
-    f.write("#PBS -N "+ job_label + str(ijob) +'\n')
+    f.write("#PBS -N "+ p.job_label + str(ijob) +'\n')
     f.write("#PBS -j oe"+ '\n')
-    f.write("#PBS -l walltime="+job_time + '\n\n\n')
+    f.write("#PBS -l walltime=" + p.job_time + '\n\n\n')
 
     f.write("cd  " + job_dir + '\n') 
     f.write("mkdir " +"dir_job_"+job_id + '\n') 
@@ -122,21 +87,47 @@ for i in range(Njob):
     f.close()
 
 
-alljob=range(1, Njob*Nsubj+1)
+alljob=range(1, p.Njob*p.Nsubj+1)
 
 # make input files
-ijob=0
-for i in range(Njob):    
-      for j in Lx:        # for diff system size
-        iseed = iseed+1    # update seed
+ijob = 0
+iseed = p.iseed 
+for i in range(p.Njob):    
+      for j in p.Lx:        # for diff system size
+        iseed = iseed + 1    # update seed
         ijob= ijob + 1
         iijob= alljob[ijob-1]
         input_id= num_to_str(iijob, len_input)
         f= open("input_"+ input_id,'w')
         nw = 1
-        content = str(j)+ "   " +str(ntoss[j])+ "   " +str(nsamp[j])+"   "+str(nw)+ "   "+ str(Kc) + "   " + str(iseed)+ "  "+ str(nblock[j]) 
+        content = str(j)+ "   " +str(p.ntoss[j])+ "   " +str(p.nsamp[j])+"   "+str(nw)+ "   "+ str(p.Kc) + "   " + str(iseed)+ "  "+ str(p.nblock[j]) 
         f.write(content + '\n' )
         f.close()
 
 
 print("========================================================") # ==============
+
+f_w = open('clear_qsub.sh','w')
+f_w.write('rm job*' + '\n')
+f_w.write('rm input*' + '\n')
+f_w.write('rm -r dir*' + '\n')
+f_w.write('rm Ising*' + '\n')
+f_w.close()
+
+f_w = open('qsub.sh','w')
+f_w.write('#!/bin/bash' + '\n' + '\n')
+f_w.write('Njob=' + str(p.Nsubj) + '\n')
+f_w.write('sub=1' + '\n')
+f_w.write('if [ $sub -eq 1 ]' + '\n')
+f_w.write('then' + '\n')
+f_w.write('for ((i=1;i<=$Njob;i++)); do' + '\n')
+f_w.write('  {' + '\n')
+f_w.write('      qsub job_$i' + '\n')
+f_w.write('          sleep .5' + '\n')
+f_w.write('      echo $i' + '\n')
+f_w.write(' }' + '\n')
+f_w.write('done' + '\n')
+f_w.write('wait' + '\n')
+f_w.write('fi' + '\n')
+f_w.write('exit 0' + '\n')
+f_w.close()

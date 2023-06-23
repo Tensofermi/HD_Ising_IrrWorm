@@ -1,9 +1,9 @@
 import os
 
 
-Njob_list = [20,20]
+Njob_list = [9]
 data_name = "data_IsingSqH"
-qsub_list = [1,2]        # each qsub must satisfy the same obs list !!
+qsub_list = ["2D_test"]        # each qsub must satisfy the same obs list !!
 ###################################################################################
 
 os.system("rm " + data_name)  # clear old data
