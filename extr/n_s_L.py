@@ -26,8 +26,8 @@ def get_szHis(index_szHis):
 ###################################################################################
 sub = "qsub"     # type of sub
 work_name = "2D_test"
-Njob = 10   # chain number
-L = [4,6,8,10]  # size list
+Njob = 40        # chain number
+L = [4,6,8,10,14,20,32]         # size list
 d = 2
 ###################################################################################
 os.chdir("../" + sub + "/" + work_name)

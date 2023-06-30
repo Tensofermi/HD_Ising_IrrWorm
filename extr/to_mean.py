@@ -296,7 +296,7 @@ for i in range(obs_num):
             cmp_err = 1.0/math.sqrt(err_irr)
             bench = 0
             for z in range(np[j]):
-                er = (cmp_quan-quan_temp[z])/err_temp[z]
+                er = (cmp_quan-quan_temp[z])/(err_temp[z]+0.000001)
                 bench = bench + er*er
         else:
             cmp_quan = quan_temp[0]
