@@ -1,0 +1,34 @@
+#include "../Configuration.hpp"
+
+void Configuration::increase_bond()
+{
+
+}
+
+void Configuration::decrease_bond()
+{
+
+}
+
+///////////////////////////////////////////////
+/////////// Update in Z sector 
+///////////////////////////////////////////////
+
+void Configuration::irrWorm()
+{
+    
+
+
+}
+
+
+///////////////////////////////////////////////
+/////////// Update in G sector 
+///////////////////////////////////////////////
+
+void Configuration::irrWorm_G()
+{
+    
+
+
+}

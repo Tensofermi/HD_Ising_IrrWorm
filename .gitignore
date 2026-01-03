@@ -17,3 +17,18 @@ cmp*.txt
 # just demo bin
 !/bin/*.out
 !/bin/*.mod
+
+
+.vscode/
+__pycache__/
+*.dat
+*.pdf
+*.out
+ouput.txt
+ouput.info
+/bin/*
+/build/*
+/lsub/fast.sh
+/qsub/fast.sh
+/lsub/jobs/*/
+/qsub/jobs/*/
