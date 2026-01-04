@@ -2,17 +2,17 @@
 
 void Configuration::updateCnf()
 {
-    // Traditional Worm 
-    Worm();             // for Z sector update
+    //==== Traditional Worm 
+    // Worm();             // for Z sector update
     // Worm_G();           // for G sector update
 
-    // Lifted Worm
+    //==== Lifted Worm
     // irrWorm();
-    // irrWorm_G();
+    irrWorm_G();
 
-    // LC Algorithm
+    //==== LC Algorithm
     // Loop_Cluster();
 
-    // For XY model
+    //==== For XY model
     
 }

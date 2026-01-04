@@ -45,6 +45,10 @@ void Configuration::initialAlgo()
     Ira = 0;
     Masha = 0;
 
+    //--- Initialize lambda and vertex_degree
+    lambda = 1;
+    vertex_degree = 0;
+
     //--- Initialize Probabilities
     P_w = tanh(Beta);
 

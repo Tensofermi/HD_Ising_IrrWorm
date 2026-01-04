@@ -22,7 +22,8 @@ public:
 
     //--- Basic parameter for algorithms
     std::vector<int> Mem, Que;
-    int Ira, Masha, lambda;
+    int Ira, Masha;
+    int lambda, vertex_degree;
     double P_w;
 
     //--- Basic Observables
@@ -64,6 +65,7 @@ std::string infoConfig()
     // Lifted Algorithm
     void irrWorm();
     void irrWorm_G();
+    int get_vertex_degree(int _Site);
     void increase_bond();
     void decrease_bond();
     
