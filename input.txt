@@ -1,5 +1,5 @@
 //----- Model_Parameters                                                                            
-D           2
+D           3
 beta        0.44
 L           16                           
 

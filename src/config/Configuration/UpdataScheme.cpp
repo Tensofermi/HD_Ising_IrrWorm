@@ -8,11 +8,13 @@ void Configuration::updateCnf()
 
     //==== Lifted Worm
     // irrWorm();
-    irrWorm_G();
+    // irrWorm_G();
 
     //==== LC Algorithm
     // Loop_Cluster();
 
     //==== For XY model
-    
+    XY_Worm();
+    // XY_Worm_G();
+
 }
