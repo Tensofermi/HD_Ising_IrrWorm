@@ -7,14 +7,14 @@ void Configuration::updateCnf()
     // Worm_G();           // for G sector update
 
     //==== Lifted Worm
-    // irrWorm();
+    irrWorm();
     // irrWorm_G();
 
     //==== LC Algorithm
     // Loop_Cluster();
 
     //==== For XY model
-    XY_Worm();
+    // XY_Worm();
     // XY_Worm_G();
 
 }

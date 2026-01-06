@@ -11,6 +11,12 @@ void Observable::initObservable()  // add addBasicObser() & addCombiObser()
 
 	addCombiObser(para.i_M2        	 , "M2"        		, "Total magnetic density"    				, 0     , 1.0/Vol	      					);
 	
+	addBasicObser(para.i_NCluster  	 , "NCluster"  		, ""    				, 0     , 1.0/Vol	      					);
+	addBasicObser(para.i_C1        	 , "C1"        		, ""    				, 0     , 1.0/Vol	      					);
+	addBasicObser(para.i_C2        	 , "C2"        		, ""    				, 0     , 1.0/Vol	      					);
+	addBasicObser(para.i_S2        	 , "S2"        		, ""    				, 0     , 1.0/Vol/Vol	      					);
+	addBasicObser(para.i_S4        	 , "S4"        		, ""    				, 0     , 1.0/Vol/Vol/Vol/Vol	      					);
+	
 }
 
 void Observable::calCombiObser()  // add Result[]

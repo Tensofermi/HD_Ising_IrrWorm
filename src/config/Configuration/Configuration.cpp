@@ -35,10 +35,12 @@ void Configuration::initialAlgo()
     //--- Initialize Queue and Memory
     Que.resize(Vol);
     Mem.resize(Vol);
+    Tree.resize(Vol);
     for (int i = 0; i < Vol; i++)
     {
         Que[i] = 0;
         Mem[i] = 0;
+        Tree[i] = 0;
     }
 
     //--- Initialize Ira and Masha

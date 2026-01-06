@@ -21,7 +21,7 @@ public:
     double Beta;
 
     //--- Basic parameter for algorithms
-    std::vector<int> Mem, Que;
+    std::vector<int> Mem, Que, Tree;
     int Ira, Masha;
     int lambda, vertex_degree;
     double P_w;
@@ -53,10 +53,12 @@ std::string infoConfig()
     void measure();
     void writeCnf();
 
-    void printConfig(int _index);
+    void printConfig();
     void corrFunPrint();
 
     void checkCnf();
+
+    void printBond();
 
     // Traditional Algorithm
     void Worm();

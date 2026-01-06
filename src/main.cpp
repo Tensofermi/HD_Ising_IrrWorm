@@ -87,9 +87,6 @@ int main()
         // Histogram Output
         his.saveDistr();
 
-        // Current Configuration Output
-        cnf.printConfig(iter);
-
 		iter++;
 	}
 
