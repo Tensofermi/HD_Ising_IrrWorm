@@ -10,6 +10,7 @@ where $V$ is the number of vertices, $|G|$ is the total number of lattice bonds,
 
 The update scheme is based on the lifting technique; see the paper: [Phys. Rev. E 97, 042126](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.97.042126)
 
+**Note that the complete version of the code is located in `old_version/`, which is written in Fortran. For convenience, the C++ version in `src/` only implements the configuration update function.**
 
 ## How to use
 
