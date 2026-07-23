@@ -14,7 +14,7 @@ int Configuration::get_vertex_degree(int _Site)
 
 void Configuration::increase_bond()
 {
-    int j_select, index_no_bond, j_Dir, j_Site, j_Bond, j_degree;
+    int j_select, index_no_bond, j_Dir = -1, j_Site, j_Bond, j_degree;
     double AccProb, P_a, P_b;
     
     //    #      #
@@ -38,6 +38,8 @@ void Configuration::increase_bond()
             }
         }   
     }
+
+    if (j_Dir < 0) throw std::logic_error("failed to select an empty bond");
 
     // obtain j_Site, j_Bond, j_degree
     j_Site = Latt.getNNSite(Ira, j_Dir);
@@ -71,7 +73,7 @@ void Configuration::increase_bond()
 
 void Configuration::decrease_bond()
 {
-    int j_select, index_occupy_bond, j_Dir, j_Site, j_Bond, j_degree;
+    int j_select, index_occupy_bond, j_Dir = -1, j_Site, j_Bond, j_degree;
     double AccProb, P_a, P_b;
     
     //    |      #
@@ -95,6 +97,8 @@ void Configuration::decrease_bond()
             }
         }   
     }
+
+    if (j_Dir < 0) throw std::logic_error("failed to select an occupied bond");
 
     // obtain j_Site, j_Bond, j_degree
     j_Site = Latt.getNNSite(Ira, j_Dir);

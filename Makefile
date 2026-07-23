@@ -1,11 +1,12 @@
 TARGET := a.out
+TEST_TARGET := common_tests
 
 SRC_DIR := src
 
 BIN_DIR := bin
 BUILD_DIR := build
 
-SRC := $(shell find $(SRC_DIR) -type f -name *.cpp)
+SRC := $(shell find $(SRC_DIR) -type f -name '*.cpp')
 OBJ := $(SRC:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
 DEP := $(OBJ:.o=.d)
 
@@ -44,10 +45,20 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<  
 
+.PHONY: test
+test: $(BIN_DIR)/$(TEST_TARGET)
+	$(BIN_DIR)/$(TEST_TARGET)
+
+$(BIN_DIR)/$(TEST_TARGET): tests/test_common.cpp \
+	$(SRC_DIR)/system/RandomNumGen/RandomNumGen.cpp \
+	$(SRC_DIR)/config/Lattice/Hyperrectangle.cpp
+	@mkdir -p $(@D)
+	$(CXX) -std=c++17 -Wall -pedantic-errors -I$(SRC_DIR) $^ -o $@
+
 
 .PHONY: clean
 clean:
-	$(RM) -rf $(BUILD_DIR)/* $(BIN_DIR)/$(TARGET) $(BUILD_DIR) $(BIN_DIR)
+	$(RM) -rf $(BUILD_DIR)/* $(BIN_DIR)/$(TARGET) $(BIN_DIR)/$(TEST_TARGET) $(BUILD_DIR) $(BIN_DIR)
 
 
 -include $(DEP)
